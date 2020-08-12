@@ -49,7 +49,6 @@ CREATE TABLE IF NOT EXISTS  oauth_clients_details (
   autoapprove TEXT
 );
 
-
 INSERT INTO users (username, email, password, activated)
 SELECT * FROM (SELECT 'admin', 'admin@admin.com', '$2a$10$r0RFDmpneBVryx.ihHK9gu6FFJQi4nTxQUqzdSTvrPpaKZMxigqpy', true) AS tmp
 WHERE NOT EXISTS (
