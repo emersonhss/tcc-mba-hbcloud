@@ -1,0 +1,35 @@
+
+.association-teams-actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+td.association-teams-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.association-teams-actions > a {
+    width: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.association-teams-actions > a > .label {
+    position: relative;
+    display: inline;
+    margin-left: 5px;
+    text-align: center;
+    font-size: 9px;
+    padding: 2px 3px;
+}
+
+.label-members {
+    background-color: #000 !important;
+}

@@ -1,0 +1,7 @@
+{
+    "presets": ["react-app"],
+    "plugins": [
+      "transform-decorators-legacy", 
+      "babel-plugin-syntax-dynamic-import"
+    ]
+  }
