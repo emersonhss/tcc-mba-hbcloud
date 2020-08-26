@@ -1,0 +1,49 @@
+.transiction-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color: #d2d6de;
+}
+
+
+.transiction-page-content {
+    flex-direction: column;
+    align-content: center;
+}
+
+.transiction-page-content p {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 2em;
+}
+
+@keyframes flickerAnimation {
+    0%   { opacity:1; }
+    50%  { opacity:0.1; }
+    100% { opacity:1; }
+  }
+  @-o-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0.1; }
+    100% { opacity:1; }
+  }
+  @-moz-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0.1; }
+    100% { opacity:1; }
+  }
+  @-webkit-keyframes flickerAnimation{
+    0%   { opacity:1; }
+    50%  { opacity:0.1; }
+    100% { opacity:1; }
+  }
+  .transiction-page-content img {
+     -webkit-animation: flickerAnimation 1.5s infinite;
+     -moz-animation: flickerAnimation 1.5s infinite;
+     -o-animation: flickerAnimation 1.5s infinite;
+      animation: flickerAnimation 1.5s infinite;
+  }

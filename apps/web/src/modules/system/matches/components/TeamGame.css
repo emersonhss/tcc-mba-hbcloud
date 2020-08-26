@@ -1,0 +1,44 @@
+.widget-user-2 .widget-user-image > a {
+    width: 65px;
+    height: auto;
+    float: left;
+    vertical-align: middle;
+    color: #fff;
+}
+
+.widget-user-2 .widget-user-header {
+    display: table;
+    width: 100%;
+}
+
+.widget-user-2 .widget-user-header > .btn-fab {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #fff;
+}
+
+.widget-user-2 .widget-user-header .btn-group {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.widget-user-2 .widget-user-header .btn-group a {
+    padding: 4px;
+    color: #fff;
+}
+
+.widget-user-2 .widget-user-header .widget-user-username input,
+.widget-user-2 .widget-user-header .widget-user-desc input {
+    font-weight: normal !important;
+}
+
+.nav > li > a.navlink-inline-block {
+    position: relative;
+    display: inline-block;
+    padding: 10px 15px;
+}
+
+.nav > li > .pull-right {
+    padding: 4px;
+}

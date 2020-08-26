@@ -1,0 +1,119 @@
+import React, { Component, Fragment } from 'react';
+import Icon from '../../../../layout/Icon';
+import Input from '../../../../components/forms/Input';
+import FabButton from '../../../../layout/FabButton';
+import imgMaximus from '../assets/imgs/maximus_square.png';
+import './TeamMatch.css';
+
+export default class TeamMatch extends Component {
+
+    constructor(props){
+        super(props);
+
+        this.state = {
+            edit: false
+        };
+        this._toggleEdit = this._toggleEdit.bind(this);
+    }
+
+    _toggleEdit(){
+        console.log(this.props.team);
+        this.setState({edit: !this.state.edit});
+    }
+
+    _renderShield(team) {
+        if(team.shield) {
+            return (
+                <img className="img-rounded" src={imgMaximus} alt={team.name} />
+            );
+        }
+        return (
+            <a role="button"><Icon type="fa" name="shield-alt" size="4" /> <span></span> </a>
+        );
+    }
+
+    _inputLocality() {
+        const {team, teanUpdateAction} = this.props;
+        return (
+            <Input type="text" size="small" cols='10'
+                placeholder="Localidade da equipe"
+                value={team.locality} 
+                onChange={(e) => teanUpdateAction('locality', e.target.value)} 
+                groupBeforeRender={() => <Icon type="fa" name="map-marker-alt" />} />
+        );
+    }
+
+    _inputName() {
+        const {team, teanUpdateAction} = this.props;
+        return (
+            <Input type="text" size="small" cols='10'
+                placeholder="Nome da equipe"
+                value={team.name} 
+                onChange={(e) => teanUpdateAction('name', e.target.value)} />
+        );
+    }
+
+    _renderLinkEditShieldTeam(edit) {
+        if(edit) {
+            return (
+                <a role="button" className="change-img"><Icon type="fa" name="image" /> <span>Alterar</span></a>
+            );
+        }
+        return null;
+    }
+
+    _renderTeamMatchNumbers(edit, icon, label, value, color, onChange) {
+        if(edit){
+            return (
+                <Fragment>
+                    <a role="button" className="navlink-inline-block"><Icon type="fa" name={icon} /> <span>{label}</span> </a>
+                    <span className={`pull-right`}>
+                        <Input type="number" size="small" cols='12'
+                            placeholder={label}
+                            value={value} 
+                            onChange={onChange} />
+                    </span>
+                </Fragment>
+            );
+        }
+        return (
+            <a role="button"><Icon type="fa" name={icon} /> <span>{label}</span> <span className={`pull-right badge bg-${color}`}>{value}</span></a>
+        );
+    }
+
+    render() {
+        const {team, teanUpdateAction} = this.props;
+        const {edit} = this.state;
+
+        return (
+            <div className="box box-widget widget-user-2">
+                {/* <!-- Add the bg color to the header using any of the bg-* classes --> */}
+                <div className="widget-user-header bg-yellow">
+                    <div className="widget-user-image">
+                       {this._renderShield(team)}
+                       {this._renderLinkEditShieldTeam(edit)}
+                    </div>
+                    {/* <!-- /.widget-user-image --> */}
+                    <h3 className="widget-user-username">
+                        { edit ? this._inputName() : (team.name ? team.name : 'Nome da equipe')}
+                    </h3>
+                    <h5 className="widget-user-desc">
+                        { edit ? '' : <Icon type="fa" name="map-marker-alt" /> }{' '}
+                        { edit ? this._inputLocality() : <span>{team.locality ? team.locality : 'Localidade da equipe' }</span> }
+                    </h5>
+                    <FabButton iconName={edit ? 'check' : 'edit'} onClickAction={(e) => this._toggleEdit()} />
+                </div>
+                <div className="box-footer no-padding">
+                    <ul className="nav nav-stacked">
+                        <li>{this._renderTeamMatchNumbers(edit, "futbol", "Gols", team.goals, "blue", (e) => teanUpdateAction('goals', e.target.value))}</li>
+                        <li>{this._renderTeamMatchNumbers(edit, "tag", "Advertências", team.warnings, "yellow", (e) => teanUpdateAction('warnings', e.target.value))}</li>
+                        <li>{this._renderTeamMatchNumbers(edit, "clock", "Exclusões", team.exclusions, "aqua", (e) => teanUpdateAction('exclusions', e.target.value))}</li>
+                        <li>{this._renderTeamMatchNumbers(edit, "user-slash", "Desqualificações", team.disqualifications, "red", (e) => teanUpdateAction('disqualifications', e.target.value))}</li>
+                        <li>{this._renderTeamMatchNumbers(edit, "stopwatch", "Tempos Técnicos", team.technicalTimes, "gray", (e) => teanUpdateAction('technicalTimes', e.target.value))}</li>
+                        <li>{this._renderTeamMatchNumbers(edit, "users", "Membros", 0, "black", (e) => {})}</li>
+                    </ul>
+                </div>
+            </div>
+        );
+    }
+}
